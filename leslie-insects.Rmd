@@ -1,0 +1,70 @@
+---
+title: "R Leslie Matrix Example"
+author: "Marie Rivers"
+date: "8/5/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Creating matricies in R
+
+Use the `matrix` function to wrap a series of values (which is a vector) into a matrix.
+
+- Use `nrow = ` to specify number of rows
+- Use `ncol - ` to specify number of columns
+- Use `byrow = TRUE` to populate the matrix by ROWS instead of columns (default is to popuate by column)
+
+Type ?matrix in the console to get more info
+
+```{r}
+cats <- c(1, 3, 5, 8, 10, 0.2, 4, 8, 10, 11, 100)
+
+# wrap cats into a matrix
+
+cat_matrix <- matrix(data = cats, nrow = 4, ncol = 5, byrow = TRUE)
+
+```
+
+```{r}
+dogs <- matrix(data = c(1, 0, 2, 3), nrow = 2, ncol = 2, byrow = TRUE)
+
+fish <- matrix(data = c(0, 8, 2, 6), nrow = 2, ncol = 2, byrow = TRUE)
+
+dogs + fish
+```
+```{r}
+fish - dogs
+4 * dogs
+dogs %*% fish
+```
+## Leslie Matrix
+```{r}
+insect_leslie <- matrix(data = c(0, 0, 600, 0.2, 0, 0, 0, 0.08, 0.6), nrow = 3, ncol = 3, byrow = TRUE)
+
+# Specify the initial conditions
+# What is the popluation in each lifestage at year 0?
+
+insect_y0 <- c(12000, 700, 500)
+
+# project the populaiton in each lifestage for year 1. Use the dot project operator to do matix multiplication with the vector of initial conditions
+insect_y1 <- insect_leslie %*% insect_y0
+
+insect_y1
+
+#Project the population at each lifestage for years 2, 3, and 4
+insect_y2 <- insect_leslie %*% insect_y1
+insect_y2
+
+insect_y3 <- insect_leslie %*% insect_y2
+insect_y3
+
+insect_y4 <- insect_leslie %*% insect_y3
+insect_y4
+
+# if 60% of adult females live after laying eggs, change the last number in the list to 0.6
+
+```
+
