@@ -1,0 +1,38 @@
+---
+title: "My Fancy Rmd"
+subtitle: "Some changes in YAML"
+author: "Marie Rivers"
+output: 
+  html_document:
+    theme: paper
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+---
+add layers to the output line. YAML is space sensitive. put cursor to html, hit return, hit tab...OR, add colun : after html_document and then put cursor infront of html and hit return to automatically get the tab. Google to get different built in Rmarkdown themes
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Part 1
+## My first chapter
+### Preface
+
+something awesome
+```{r}
+a <- 10
+b <- 25
+teddy <- a + b
+```
+# Getting started
+## My second chapter
+
+### a note on something
+```{r}
+mean(mtcars$mpg)
+
+a + b
+
+teddy
+```
+
